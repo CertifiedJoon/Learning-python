@@ -9,7 +9,7 @@ class Solution:
             if a:
                 carry += int(a.pop())
             if b:
-                carry += int(a.pop())
+                carry += int(b.pop())
 
             result += str(carry%2)
             carry //= 2
