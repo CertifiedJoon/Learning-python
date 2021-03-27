@@ -1,7 +1,6 @@
-def catcher(lst, index, value):
-    if index >= len(lst):
-        raise IndexError("Dont try buffer overflow attacks in python")
-    lst[index] = value 
-        
-        
-catcher([1,2],3,4)
+n = int(input("input index"))
+lst = [k*k for k in range(10)]
+try:
+    print(lst[n], sep=' ')
+except IndexError:
+    print("Don't you dare try buffer overflow attacks in python")
