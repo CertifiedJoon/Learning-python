@@ -27,10 +27,10 @@ class CreditCard:
         Return True if Charge was processed; False if charge was denied"""
         while(True):
             try:
-                if price + self._balance > self._limit:
+                if price + self.get_balance() > self.get_limit():
                     return False
                 else:
-                    self._balance += price
+                    self._set_balance(self.get_balance() + price)
                     return True
             except ValueError:
                 print('That is invalid price')
@@ -43,8 +43,30 @@ class CreditCard:
                 if (amount < 0):
                     raise ValueError
                 else:
-                    self._balance -= amount
+                    self._set_balance(self.get_balance() - amount)
                     break
             except ValueError:
                 print('That is invalid amount')
                 price = float(input('Please re-enter amount: '))
+                
+    def _set_balance(self, balance):
+        self._balance = balance
+                
+                
+class PredatoryCreditCard(CreditCard):
+    def __init__(self, customer, bank, acnt, limit, apr):
+        """Create a new predatory credit card instance"""
+        
+        super().__init__(customer, bank, acnt, limit)
+        self._apr = apr
+        
+    def charge (self, price):
+        success = super().charge(price)
+        if not success:
+            self._set_balance(self.get_balance() + 5)
+            return success
+        
+    def process_month(self):
+        if self._balance > 0:
+            monthly_factor = pow(1 + self._apr, 1/12)
+            self._set_balance(self.get_balance() * monthly_factor)
