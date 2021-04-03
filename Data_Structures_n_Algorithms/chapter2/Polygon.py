@@ -21,7 +21,6 @@ class Triangle(Polygon):
         self._b = sqrt(pow((self._vertices[1][0] - self._vertices[2][0]), 2) + pow((self._vertices[1][1] - self._vertices[2][1]), 2))
         self._c = sqrt(pow((self._vertices[2][0] - self._vertices[0][0]), 2) + pow((self._vertices[2][1] - self._vertices[0][1]), 2)) 
         
-        
     def perimeter(self):
         """Returns a + b + c"""
         return self._a + self._b + self._c
@@ -54,7 +53,7 @@ class Pentagon(Polygon):
     
     def area(self):
         return self._quadrilateral1.area() + self._triangle1.area()
-        
+
 
 t = Triangle(((0,0), (2,0), (0,2)))
 q = Quadrilateral(((0,0), (2,0), (0,2), (2,2)))
