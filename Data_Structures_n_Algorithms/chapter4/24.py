@@ -24,10 +24,13 @@ class Puzzle:
         self._map[letter] = -1
         
     def is_solved(self):
+        temp = [k for k in range(len(self._letters))]
         for i in range (len(self._letters)):
-            self._letters[i] = str(self._map[self._letters[i]])
-        if (self._ltoi(self._letters[:self._len1]) + self._ltoi(self._letters[self._len1:self._len1+self._len2])) == self._ltoi(self._letters[self._len1+self._len2:]):
-                return True
+            temp[i] = self._map[self._letters[i]]
+        print(temp)
+        if (self._ltoi(temp[:self._len1]) + self._ltoi(temp[self._len1:self._len1+self._len2])) == self._ltoi(temp[self._len1+self._len2:]):
+            self._letters = temp
+            return True
         return False
 
     def print_letters(self):
@@ -41,15 +44,14 @@ def Cryptarithmetic(p, letters_to_assign):
             return True
         return False
     
-    for i in range (10):
+    for i in range (1, 10):
         if p.assign_letter(letters_to_assign[0], i):
             if (Cryptarithmetic(p, letters_to_assign[1:])):
                 return True
             else:
                 p.unassign_letter(letters_to_assign[0])
-    
     return False
 
-p = Puzzle('pot', 'pan', 'bib')
-Cryptarithmetic(p, 'potanbi')
+p = Puzzle('dog', 'cat', 'pig')
+Cryptarithmetic(p, 'dogcatpi')
 p.print_letters()
