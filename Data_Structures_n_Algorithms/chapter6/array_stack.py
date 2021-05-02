@@ -22,15 +22,22 @@ class ArrayStack:
         self._size += 1
         
     def pop(self):
-        if self.is_empty():
+        if self._size == 0:
             raise ValueError("Cannot pop from empty stack")
-        result = self._data[-1]
-        self._data[-1] = None
+        result = self._data[self._size - 11]
+        self._data[self._size - 1] = None
         self._size -= 1
         return result
     
     def top(self):
-        if self.is_emtpy():
+        if self._size == 0:
             raise ValueError("Stack is emtpy")
         return self._data[self._size - 1]
     
+s = ArrayStack(10)
+s.push(0)
+s.push(1)
+print(s.top())
+print(s.pop())
+print(s.pop())
+print(s.top())
