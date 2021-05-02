@@ -30,3 +30,24 @@ class CaesarCipher:
             
         return ''.join(msg)
         
+class Substitution_Cipher(CaesarCipher):
+    def __init__(self, subs, shift):
+        encoder = [None] * 26
+        decoer = [None] * 26
+        
+        for k in range(26):
+            encoder[k] = subs[(k + shift) % 26]
+            decoder[k] = subs[(k - shift) % 26]
+            
+        self._forward = ''.join(encoder)
+        self._backward = ''.join(decoder)
+        
+class RandomCipher(Substitution_Cipher):
+    import random
+    def __init__(self, shift):
+        rand = [None] * 26
+        
+        for k in range(26):
+            rand[k] = k + ord('A'):
+        randdom.shuffle(rand)
+        super().__init__(shift, ran
