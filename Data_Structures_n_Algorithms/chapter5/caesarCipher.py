@@ -50,4 +50,4 @@ class RandomCipher(Substitution_Cipher):
         for k in range(26):
             rand[k] = k + ord('A'):
         randdom.shuffle(rand)
-        super().__init__(shift, ran
+        super().__init__(shift, rand)
