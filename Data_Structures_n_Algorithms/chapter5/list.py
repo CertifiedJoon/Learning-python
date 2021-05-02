@@ -21,4 +21,14 @@ class list:
             self._A = B
             self._cap = self._n * 2
             
+    def remove_all(self, val):
+        temp = []
+        for i in range(self._n):
+            if (self._A[i] != val):
+                temp.append(self._A[i])
+                
+        self._A = temp
+        self._n = len(temp)
+        self._cap = temp.get_cap()
+        
     
