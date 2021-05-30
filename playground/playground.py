@@ -1,21 +1,33 @@
-#quadratic approach to Threeway Set Disjointness
+def lpsCalc(needle, n):
+    i = 1
+    le = 0
+    lps = [0 for i in range(n)]
+    while (i < n):
+        if (needle[le] = needle[i]):
+            le += 1
+            lps[i] = le
+            i += 1
+        else:
+            if (le):
+                le = lps[le]
+            else:
+                i += 1
+    return lps
 
-#cubic method
-def disjoint1(A,B,C):
-    for a in A:
-        for b in B:
-            for c in C:
-                if a == b == c:
-                    return False
-    return True
-
-#quadratic method
-def disjoint2(A,B,C):
-    for a in A:
-        for b in B:
-            if a == b:
-                for c in C:
-                    if a == c:
-                        return False
-                    
-    return True
+def find(needle, haystack):
+    n = len(needle)
+    m = len(haystack)
+    i = j = 0
+    while(i < m and j < n):
+        if (haystack[i] == needle[j]):
+            i += 1
+            j += 1
+        if j == n:
+            return i - n
+        if (i < m and haystack[i] != needle[j]):
+            if j:
+                j = lps[j-1]
+            else:
+                j = 0
+    return -1
+            
